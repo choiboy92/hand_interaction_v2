@@ -24,7 +24,7 @@ function draw_img(url) {
 }
 
 
-
+var sfx = new Audio('sound/tissue_sf.m4a');
 var c;
 var ctx;
 var tissue_img_array = ['img/no_hand.jpeg', 'img/hand_down.jpeg', 'img/hand_grab.jpeg', 'img/hand_up.jpeg'];
@@ -61,6 +61,7 @@ window.onload = () => {
           draw_img(tissue_img_array[1])
         }
         else {
+          sfx.play();
           draw_img(tissue_img_array[3]);
         }
       }
