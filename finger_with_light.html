@@ -81,9 +81,8 @@
         #img_container {
           width: 100vw;
           height: 100vh;
-          background-color: #383838;
           position: relative;
-
+          transition: 0.5s all;
         }
         .frames {
           max-width: 100%;
@@ -97,6 +96,28 @@
           font-weight: 700;
           font-size: 20px;
           color: black;
+        }
+        #popup_box {
+          display: none; /* Hidden by default */
+          z-index: 1; /* Sit on top */
+          position: absolute;
+	        top:0;
+	        bottom: 0;
+	        left: 0;
+	        right: 0;
+	        margin: auto;
+          height: 100px;
+          width: 200px;
+        }
+        .but {
+          width: 100%;
+          height: 100%;
+          font-family: 'Avenir';
+          font-weight: 700;
+          font-size: 40px;
+          color: black;
+          border-radius: 5px;
+          background-color: #F7B2BD;
         }
         /*canvas {
           display: inline-block;
@@ -133,6 +154,7 @@
 
 
     <div id="img_container">
+    <div id="popup_box"><button class="but" onClick="document.location.reload(true)">Restart?</button></div>
     <div class="wrapper">
         <!--<div class="row"> class="col-lg-6"-->
             <div class="children">
@@ -153,7 +175,7 @@
         </div> -->
 
   </div>
-  <canvas id="img_canvas" background="red"height="500" width="500"></canvas>
+  <canvas id="img_canvas" height="500" width="500"></canvas>
   <!--<img class="frames" src="img/hand_down.jpeg"/>-->
   </div>
 
@@ -174,94 +196,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-
-  function scaleToFit(image){
-    // get the scale
-    var scale = Math.min(c.width / image.width, c.height / image.height);
-    // get the top left position of the image
-    var x = (c.width / 2) - (image.width / 2) * scale;
-    var y = (c.height / 2) - (image.height / 2) * scale;
-    ctx.drawImage(image, x, y, image.width * scale, image.height * scale);
-  }
-
-
-  function draw_img(url) {
-    //console.log("Drawing");
-    var image = new Image();
-    image.onload = function() {
-      ctx.clearRect(0,0,c.width, c.height);
-      scaleToFit(image);
-      //console.log("Image is loaded");
-    };
-    image.src = url;
-  }
-
-
-  var sfx = new Audio('sound/tightening_sound_effect.m4a');
-  var end_sound = new Audio('sound/ding.m4a');
-
-  var c;
-  var ctx;
-  var light_img_array = ['img/light_left.jpeg', 'img/light_right.jpeg', 'img/light_on.jpeg']
-  window.onload = () => {
-    var thediv = document.getElementById("img_container");
-    c = document.getElementById("img_canvas");
-    ctx = c.getContext('2d');
-
-    function resize(){
-      c.width = thediv.clientWidth;
-      c.height= thediv.clientHeight;
-    }
-    //on page resize, call resize()
-    window.addEventListener("resize", resize, false);
-
-    //call resize() initially to set the canvas size correctly
-    resize();
-
-    console.log("Window loaded");
-    draw_img(light_img_array[0]);    // draw initial image
-
-    var count = 0; //count
-    var thumb_on_left = true;//bool for checking whether motion left or right
-
-    // don't run redrawing until model is set up
-    setTimeout(function() {
-      var repeat = setInterval(function(){
-        var last_el = trainingData[trainingData.length-1];
-
-        //Only for RIGHT HAND
-        var num = (last_el["thumb4"][0]-last_el["palm"][0])
-        //console.log(num)
-        //console.log(thumb_on_left)
-        if (count == 5) {
-          end_sound.play();
-          draw_img(light_img_array[2]);
-          alert("Exercise completed");
-          clearInterval(repeat);
-        }
-        else if (num>0 && thumb_on_left==false) {
-          sfx.play();
-          draw_img(light_img_array[0]);
-          thumb_on_left = true;
-        }
-        else if (num<0 && thumb_on_left==true) {
-          sfx.play();
-          draw_img(light_img_array[1]);
-          thumb_on_left = false;
-          count++;
-        }
-
-
-      }, 500);
-    }, 5000)
-
-  }
-
-  //console.log(trainingData["index1"]);
-
-
-</script>
+<script src="js/finger_with_light.js"></script>
 
 
 

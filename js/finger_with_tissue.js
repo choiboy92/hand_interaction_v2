@@ -24,6 +24,10 @@ function draw_img(url) {
 }
 
 
+
+
+var colours = ['#FFFFFF','#65B1FC', '#FFFBDB','#FFEC51']
+document.getElementById('img_container').style.backgroundColor = colours[0];
 var sfx = new Audio('sound/tissue_sf.m4a');
 var c;
 var ctx;
@@ -58,18 +62,22 @@ window.onload = () => {
       //Only for RIGHT HAND
       if (grad<=2.5 && grad>=0) {   //Condition for movement in between
         if (down == true) {     //checking if motion is downwards or not
+          document.getElementById('img_container').style.backgroundColor = colours[2];
           draw_img(tissue_img_array[1])
         }
         else {
+          document.getElementById('img_container').style.backgroundColor = colours[3];
           sfx.play();
           draw_img(tissue_img_array[3]);
         }
       }
       else if (grad>2.5 || grad<-1.0) {   // condition for when at top
+        document.getElementById('img_container').style.backgroundColor = colours[0];
         draw_img(tissue_img_array[0])
         down = true;
       }
       else if (grad<0) {    // condition for when at bottom
+        document.getElementById('img_container').style.backgroundColor = colours[1];
         draw_img(tissue_img_array[2]);
         down = false;
       }

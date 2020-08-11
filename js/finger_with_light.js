@@ -23,6 +23,7 @@ function draw_img(url) {
   image.src = url;
 }
 
+document.getElementById('img_container').style.backgroundColor = '#808080';
 
 var sfx = new Audio('sound/tightening_sound_effect.m4a');
 var end_sound = new Audio('sound/ding.m4a');
@@ -58,12 +59,13 @@ window.onload = () => {
 
       //Only for RIGHT HAND
       var num = (last_el["thumb4"][0]-last_el["palm"][0])
-      //console.log(num)
-      //console.log(thumb_on_left)
+
       if (count == 5) {
         end_sound.play();
+        document.getElementById('img_container').style.background = '#FFEC69';
+        document.getElementById('popup_box').style.display = 'block';
         draw_img(light_img_array[2]);
-        alert("Exercise completed");
+        //alert("Exercise completed");
         clearInterval(repeat);
       }
       else if (num>0 && thumb_on_left==false) {
