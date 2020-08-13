@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+body {
+  background-color: #F8F8F8;
+}
+.wrapper {
+  padding-top: 70px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  /*height: 40vh;*/
+  justify-content: center;
+}
+.buttonContainer {
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex: 0 1 450px;
+  height: 250px;
+  border-radius: 10px;
+  background-color: #363636;
+}
+#header {
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #77AFF7;
+}
+button {
+  border-radius: 10px;
+  background-color: #EE6055;
+  width: 450px;
+  height: inherit;
+  font-family: 'Avenir';
+  font-weight: 700;
+  font-size: 40px;
+  color: black;
+  display: block;
+  position: absolute;
+  z-index: 1;
+
+}
+button:hover {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  color: Gainsboro;
+  transition: 0.5s all;
+}
+p {
+  font-family: 'Avenir';
+  font-weight: 700;
+  font-size: 15px;
+  color: gray;
+}
+.preview {
+  margin: 0 auto;
+  max-height: 100%;
+  max-width: 90%;
+  z-index: 0;
+}
+#logobanner {
+  display: block;
+  height: 100%;
+  margin: 0 auto;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div id="header">
+    <img id="logobanner"src="logo_banner.png">
+  </div>
+  <div class="row">
+    <div id="main_link" class="buttonContainer">
+      <button type="button" name="button1">Main demo</button>
+    </div>
+    <div id="light_link" class="buttonContainer">
+      <button type="button" name="button2">Lightbulb</button>
+      <video id="l_vid"src="demos/lightbulb_demo.mov" class="preview" loop></video>
+    </div>
+  </div>
+  <div class="row">
+    <div id="tissue_link" class="buttonContainer">
+      <button type="button" name="button3">Tissue</button>
+      <video id="t_vid" src="demos/tissue_demo.mov" class="preview" loop></video>
+    </div>
+    <div id="paper_link" class="buttonContainer">
+      <button type="button" name="button4">Paper Crush</button>
+      <video id="p_vid" src="demos/papercrush_demo.mov" class="preview" loop></video>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script type="text/javascript">
+$("button").mouseenter(function() {
+    //console.log('mouse_entered');
+    $("#l_vid")[0].play();
+    $("#t_vid")[0].play();
+    $("#p_vid")[0].play();
+})
+
+$("button").mouseout(function() {
+    //console.log('mouse left');
+    $("#l_vid")[0].pause();
+    $("#t_vid")[0].pause();
+    $("#p_vid")[0].pause();
+    $("#l_vid")[0].currentTime = 0;
+    $("#t_vid")[0].currentTime = 0;
+    $("#p_vid")[0].currentTime = 0;
+})
+</script>
+</body>
+</html>
