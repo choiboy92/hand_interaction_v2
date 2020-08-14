@@ -26,8 +26,7 @@ function draw_img(url) {
 var introvideo = document.getElementById('watchMe');
 var overlay = document.getElementById('overlay');
 
-var start = false;
-
+var start = false; // evaluate when video has ended
 introvideo.addEventListener('timeupdate', function(){
   if (introvideo.currentTime == introvideo.duration) {
     introvideo.style.display = 'none';
@@ -47,7 +46,7 @@ var tissue_img_array = ['img/no_hand.jpeg', 'img/hand_down.jpeg', 'img/hand_grab
 window.onload = () => {
   sfx.load();
   end_sound.load();
-  
+
   var thediv = document.getElementById("img_container");
   c = document.getElementById("img_canvas");
   ctx = c.getContext('2d');
@@ -67,7 +66,7 @@ window.onload = () => {
 
   var down = true;    //bool for checking whether motion downwards or up
   // don't run redrawing until model is set up
-  setTimeout(function() {
+  //setTimeout(function() {
     setInterval(function(){
       if (start == true) {
         var last_el = trainingData[trainingData.length-1];
@@ -99,5 +98,5 @@ window.onload = () => {
         }
       }
     }, 1000);
-  }, 5000)
+  //}, 5000)
 }

@@ -31,8 +31,7 @@ var end_sound = new Audio('sound/ding.m4a');
 var introvideo = document.getElementById('watchMe');
 var overlay = document.getElementById('overlay');
 
-var start = false;
-
+var start = false;// evaluate when video has ended
 introvideo.addEventListener('timeupdate', function(){
   if (introvideo.currentTime == introvideo.duration) {
     introvideo.style.display = 'none';
@@ -71,7 +70,7 @@ window.onload = () => {
   var calib = false;
   var fist = true;
   // don't run redrawing until model is set up
-  setTimeout(function() {
+  //setTimeout(function() {
     var repeat = setInterval(function(){
       if (start == true) {
         var last_el = trainingData[trainingData.length-1];
@@ -107,5 +106,5 @@ window.onload = () => {
         }*/
       }
     }, 250);
-  }, 5000)
+  //}, 5000)
 }
