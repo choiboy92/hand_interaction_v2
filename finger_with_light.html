@@ -79,9 +79,10 @@
           text-align: center;
         }
         #img_container {
+          z-index: 0;
           width: 100vw;
           height: 100vh;
-          position: relative;
+          position: absolute;
           transition: 0.5s all;
         }
         .frames {
@@ -122,6 +123,32 @@
         /*canvas {
           display: inline-block;
         }*/
+        video#watchMe {
+          display: block;
+          z-index: 2;
+          max-width: 90%;
+          max-height: 90%;
+          transition: 0.5s;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;
+          margin: auto;
+        }
+        #overlay {
+          text-align: center;
+            z-index: 1;
+            position: absolute;
+            height: 100vh;
+            width: 100vw;
+            top:0;
+            left:0;
+            background: rgba(0, 0, 0, 0.85);
+            transition: 0.5s;
+        }
+        body {
+          overflow-y: hidden;
+        }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -176,8 +203,15 @@
 
   </div>
   <canvas id="img_canvas" height="500" width="500"></canvas>
+
+
+
   <!--<img class="frames" src="img/hand_down.jpeg"/>-->
   </div>
+  <div id="overlay"><video id="watchMe" autoplay="true" muted="muted">
+    <source src="intro_vid/lightbulb_instruction.m4v" type="video/mp4">
+  </video></div>
+
 
 <!--
     <div style="width: 30%; height:150px; float: left;">

@@ -104,9 +104,6 @@ function setup() {
   //scale canvas down from 555, 480
   let canv = createCanvas(222, 192);
   //var ctx = canv.getContext("2d");
-  capture = createCapture(VIDEO);
-  capture.size(256, 192);
-  capture.hide();
   //canv.scale(0.4,0.4)
   canv.parent("jumbo");
 

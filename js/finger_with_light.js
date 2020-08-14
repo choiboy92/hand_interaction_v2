@@ -25,13 +25,32 @@ function draw_img(url) {
 
 document.getElementById('img_container').style.backgroundColor = '#808080';
 
-var sfx = new Audio('sound/tightening_sound_effect.m4a');
+/*const AudioContext = window.AudioContext || window.webkitAudioContext;
+const sfx = new AudioContext();
+sfx = new Audio('sound/tightening_sound_effect.m4a');*/
+//var sfx = new Audio('sound/tightening_sound_effect.m4a');
+var sfx = new Audio('sound/tsf_alt.mp3');
 var end_sound = new Audio('sound/ding.m4a');
+
+var introvideo = document.getElementById('watchMe');
+var overlay = document.getElementById('overlay');
+
+var start = false;
+introvideo.addEventListener('timeupdate', function(){
+  if (introvideo.currentTime == introvideo.duration) {
+    introvideo.style.display = 'none';
+    overlay.style.display = 'none';
+    start = true;
+    console.log(start);
+  }
+}, false);
 
 var c;
 var ctx;
 var light_img_array = ['img/light_left.jpeg', 'img/light_right.jpeg', 'img/light_on.jpeg']
 window.onload = () => {
+  sfx.load();
+  end_sound.load();
   var thediv = document.getElementById("img_container");
   c = document.getElementById("img_canvas");
   ctx = c.getContext('2d');
@@ -55,29 +74,35 @@ window.onload = () => {
   // don't run redrawing until model is set up
   setTimeout(function() {
     var repeat = setInterval(function(){
-      var last_el = trainingData[trainingData.length-1];
+      if (start == true) {
+        var last_el = trainingData[trainingData.length-1];
 
-      //Only for RIGHT HAND
-      var num = (last_el["thumb4"][0]-last_el["palm"][0])
+        //Only for RIGHT HAND
+        var num = (last_el["thumb4"][0]-last_el["palm"][0])
 
-      if (count == 5) {
-        end_sound.play();
-        document.getElementById('img_container').style.background = '#FFEC69';
-        document.getElementById('popup_box').style.display = 'block';
-        draw_img(light_img_array[2]);
-        //alert("Exercise completed");
-        clearInterval(repeat);
-      }
-      else if (num>0 && thumb_on_left==false) {
-        sfx.play();
-        draw_img(light_img_array[0]);
-        thumb_on_left = true;
-      }
-      else if (num<0 && thumb_on_left==true) {
-        sfx.play();
-        draw_img(light_img_array[1]);
-        thumb_on_left = false;
-        count++;
+        if (count == 5) {
+          end_sound.play();
+          document.getElementById('img_container').style.background = '#FFEC69';
+          document.getElementById('popup_box').style.display = 'block';
+          draw_img(light_img_array[2]);
+          //alert("Exercise completed");
+          clearInterval(repeat);
+        }
+        else if (num>0 && thumb_on_left==false) {
+          sfx.pause();
+          sfx.currentTime = 0;
+          sfx.play();
+          draw_img(light_img_array[0]);
+          thumb_on_left = true;
+        }
+        else if (num<0 && thumb_on_left==true) {
+          sfx.pause();
+          sfx.currentTime = 0;
+          sfx.play();
+          draw_img(light_img_array[1]);
+          thumb_on_left = false;
+          count++;
+        }
       }
     }, 500);
   }, 5000)
