@@ -96,7 +96,6 @@ window.onload = () => {
   var thumb_on_left = true;//bool for checking whether motion left or right
 
   var vid = document.getElementById('video');
-
   var end_select = false;
   // don't run redrawing until model is set up
   //setTimeout(function() {

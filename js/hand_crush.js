@@ -43,6 +43,30 @@ introvideo.addEventListener('timeupdate', function(){
 
 var c;
 var ctx;
+// NEW CODE from here
+var repeat;
+var timer;
+var end_ex = false;
+var timer_start = false;
+function endEx(txt) {
+  progress = 0 // out of 5 for five seconds
+  timer_start = true;
+  var t = new Date();
+  t.setSeconds(t.getSeconds() + 5);
+  timer = setInterval(function() {
+    var delta = t - Date.now();
+    progress++;
+    console.log(progress);
+    //console.log(delta);
+    if (delta<0) {
+      clearInterval(timer);
+      clearInterval(repeat); // end loop
+      alert(txt);
+    };
+  },1000);
+}
+// TO HERE
+
 var paper_img_array = ['img/paper.png', 'img/paperball.png'];
 window.onload = () => {
   sfx.load();
@@ -69,9 +93,14 @@ window.onload = () => {
   var thumb_on_left = true;//bool for checking whether motion left or right
   var calib = false;
   var fist = true;
+
+  // NEW CODE
+  var vid = document.getElementById('video');
+  var end_select = false;
+  
   // don't run redrawing until model is set up
   //setTimeout(function() {
-    var repeat = setInterval(function(){
+  repeat = setInterval(function(){
       if (start == true) {
         var last_el = trainingData[trainingData.length-1];
 
@@ -82,28 +111,57 @@ window.onload = () => {
         // set level as 300px
         console.log(dist);
 
-        if (count == 5) {
+        if (count == 5 && end_ex == false) {
+          end_ex = true; // exercise is completed
           end_sound.play();
           document.getElementById('img_container').style.background = '#FFEC69';
           document.getElementById('popup_box').style.display = 'block';
           //alert("Exercise completed");
-          clearInterval(repeat);
+          //clearInterval(repeat);
         }
-        else if (dist >=300 && fist == true) {
+        else if (dist >=300 && fist == true && end_ex == false) {
           calib = true;
           fist = false;
           document.getElementById('notclose').style.display = 'none';
           draw_img(paper_img_array[0]);
         }
-        else if (dist>=80 && dist<=120 && calib == true && fist == false) {
+        else if (dist>=80 && dist<=120 && calib == true && fist == false && end_ex == false) {
           fist = true;
           sfx.play();
           draw_img(paper_img_array[1]);
           count++;
         }
-        /*else {
-          document.getElementById('notclose').style.display = 'block';
-        }*/
+        // NEW CODE NEW CODE
+        // Interaction to be carried out when exercise is completed
+        else if (end_ex == true) {
+          var mid = (last_el["bb"][0] + last_el["bb"][2])/2 // start calculating mid
+          // RIGHT HAND SIDE INTERACTION
+          if (mid<(vid.videoWidth/2)) {
+            // Evaluate if side is coming from left (End button selected)
+            if (end_select == true) {
+              console.log('INTERVAL TIMER IS CLEARED');
+              clearInterval(timer);
+              timer_start = false;
+            }
+            end_select = false;
+            if (timer_start == false) {
+              endEx('Restart exercise');
+            }
+          }
+          // LEFT HAND SIDE INTERACTION
+          else if (mid>(vid.videoWidth/2)) {
+            // Evaluate if side is coming from right (Restart button selected)
+            if (end_select == false) {
+              console.log('INTERVAL TIMER IS CLEARED');
+              clearInterval(timer);
+              timer_start = false;
+            }
+            end_select = true;
+            if (timer_start == false) {
+              endEx('End exercise');
+            }
+          }
+        }
       }
     }, 250);
   //}, 5000)
