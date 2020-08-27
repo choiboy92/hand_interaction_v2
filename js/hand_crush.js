@@ -66,6 +66,15 @@ function endEx(txt) {
   },1000);
 }
 // TO HERE
+// On toggle button clicks
+function toggleView(id) {
+  let ViewOff = document.getElementById(id + 'View');
+  if (document.getElementById(id).checked == true) {
+    ViewOff.style.display = 'block';
+  } else {
+    ViewOff.style.display = 'none';
+  };
+}
 
 var paper_img_array = ['img/paper.png', 'img/paperball.png'];
 window.onload = () => {
@@ -97,7 +106,7 @@ window.onload = () => {
   // NEW CODE
   var vid = document.getElementById('video');
   var end_select = false;
-  
+
   // don't run redrawing until model is set up
   //setTimeout(function() {
   repeat = setInterval(function(){

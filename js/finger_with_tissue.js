@@ -36,6 +36,16 @@ introvideo.addEventListener('timeupdate', function(){
   }
 }, false);
 
+// On toggle button clicks
+function toggleView(id) {
+  let ViewOff = document.getElementById(id + 'View');
+  if (document.getElementById(id).checked == true) {
+    ViewOff.style.display = 'block';
+  } else {
+    ViewOff.style.display = 'none';
+  };
+}
+
 
 var colours = ['#FFFFFF','#65B1FC', '#FFFBDB','#FFEC51']
 document.getElementById('img_container').style.backgroundColor = colours[0];
@@ -45,7 +55,6 @@ var ctx;
 var tissue_img_array = ['img/no_hand.jpeg', 'img/hand_down.jpeg', 'img/hand_grab.jpeg', 'img/hand_up.jpeg'];
 window.onload = () => {
   sfx.load();
-  end_sound.load();
 
   var thediv = document.getElementById("img_container");
   c = document.getElementById("img_canvas");

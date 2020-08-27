@@ -90,6 +90,15 @@ function skipVid() {
     }
   }, 500);
 }
+// On toggle button clicks
+function toggleView(id) {
+  let ViewOff = document.getElementById(id + 'View');
+  if (document.getElementById(id).checked == true) {
+    ViewOff.style.display = 'block';
+  } else {
+    ViewOff.style.display = 'none';
+  };
+}
 
 window.onload = () => {
   sfx.load();
