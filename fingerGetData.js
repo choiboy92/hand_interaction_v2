@@ -8,6 +8,7 @@ let state = 'waiting';
 let targetLabel;
 let brain;
 let trainingData = []
+let start_draw = false;
 
 function successCallback(stream) {
   console.log("success camear")
@@ -140,6 +141,7 @@ async function draw() {
 
         if (predictions.length > 0)
         {
+          start_draw = true;
           // console.log(predictions)
           // console.log("length!!!!!!", predictions.length)
 

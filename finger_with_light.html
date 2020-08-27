@@ -124,11 +124,12 @@
           display: inline-block;
         }*/
         video#watchMe {
+          position: absolute;
           display: block;
           z-index: 2;
           max-width: 90%;
           max-height: 90%;
-          transition: 0.5s;
+          transition: all 0.5s;
           top: 0;
           bottom: 0;
           right: 0;
@@ -136,18 +137,44 @@
           margin: auto;
         }
         #overlay {
+          display: flex;
           text-align: center;
-            z-index: 1;
-            position: absolute;
-            height: 100vh;
-            width: 100vw;
-            top:0;
-            left:0;
-            background: rgba(0, 0, 0, 0.85);
-            transition: 0.5s;
+          z-index: 1;
+          position: absolute;
+          justify-content: center;
+          height: 100vh;
+          width: 100vw;
+          top:0;
+          left:0;
+          background: rgba(0, 0, 0, 0.85);
+          transition: 0.5s;
         }
         body {
           overflow-y: hidden;
+        }
+        #skip_button {
+          position: absolute;
+          bottom: 10px;
+          display: none;
+          z-index: 5; /* Sit on top */
+        }
+        #prompt {
+          position: absolute;
+          top: 60%;
+          opacity: 0;
+          transform: translateY(-50%);
+          z-index: 1;
+          color: grey;
+          font-size: 30px;
+          transition: all 1s;
+        }
+        #loading_txt {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 1;
+          color: grey;
+          font-size: 50px;
         }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -209,8 +236,11 @@
   <!--<img class="frames" src="img/hand_down.jpeg"/>-->
   </div>
   <div id="overlay"><video id="watchMe" autoplay="true" muted="muted">
-    <source src="intro_vid/lightbulb_instruction.m4v" type="video/mp4">
-  </video></div>
+    <source src="intro_vid/lightbulb_instruction.m4v" type="video/mp4"></video>
+    <button id="skip_button" onClick="skipVid()">Skip video</button>
+    <p id="loading_txt">LOADING...</p>
+    <p id="prompt">try wave hand in front of camera</p>
+  </div>
 
 
 <!--

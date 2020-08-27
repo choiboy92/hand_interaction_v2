@@ -41,7 +41,7 @@ introvideo.addEventListener('timeupdate', function(){
     introvideo.style.display = 'none';
     overlay.style.display = 'none';
     start = true;
-    console.log(start);
+    //console.log(start);
   }
 }, false);
 
@@ -49,7 +49,6 @@ var c;
 var ctx;
 var light_img_array = ['img/light_left.jpeg', 'img/light_right.jpeg', 'img/light_on.jpeg']
 
-// NEW CODE from here
 var repeat;
 var timer;
 var end_ex = false;
@@ -71,7 +70,27 @@ function endEx(txt) {
     };
   },1000);
 }
-// TO HERE
+
+// Function when skip_button is clicked
+function skipVid() {
+  console.log('Button clicked');
+  introvideo.pause();
+  introvideo.style.display = 'none';
+  var wait = 0;
+  var check = setInterval(function() {
+    console.log(start_draw);
+    wait++;
+    if (start_draw==true) {
+      overlay.style.display = 'none';
+      start = true;
+      clearInterval(check);
+    }
+    if (wait>15) {
+      document.getElementById('prompt').style.opacity = 1;
+    }
+  }, 500);
+}
+
 window.onload = () => {
   sfx.load();
   end_sound.load();
@@ -97,9 +116,10 @@ window.onload = () => {
 
   var vid = document.getElementById('video');
   var end_select = false;
+
+  document.getElementById('skip_button').style.display = 'block';
   // don't run redrawing until model is set up
   //setTimeout(function() {
-
   repeat = setInterval(function(){
       if (start == true) {
         var last_el = trainingData[trainingData.length-1];
