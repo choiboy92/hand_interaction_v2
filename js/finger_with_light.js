@@ -49,22 +49,24 @@ var c;
 var ctx;
 var light_img_array = ['img/light_left.jpeg', 'img/light_right.jpeg', 'img/light_on.jpeg']
 
+
 var repeat;
 var timer;
 var end_ex = false;
 var timer_start = false;
-function endEx(txt) {
-  progress = 0 // out of 5 for five seconds
+function endEx(txt,Count_el) {
+  progress = 5 // out of 5 for five seconds
+  Count_el.innerHTML = progress;
   timer_start = true;
   var t = new Date();
-  t.setSeconds(t.getSeconds() + 5);
+  t.setSeconds(t.getSeconds() + progress);
   timer = setInterval(function() {
     var delta = t - Date.now();
-    progress++;
-    console.log(progress);
-    //console.log(delta);
+    progress--;
+    Count_el.innerHTML = progress;
+    //console.log(progress);
     if (delta<0) {
-      clearInterval(timer);
+      clearInterval(timer); // end timer
       clearInterval(repeat); // end loop
       alert(txt);
     };
@@ -126,6 +128,8 @@ window.onload = () => {
   var vid = document.getElementById('video');
   var end_select = false;
 
+  // delay = no. of cycles the message is displayed for
+  var delay = 10; // initialise delay to be 0
   document.getElementById('skip_button').style.display = 'block';
   // don't run redrawing until model is set up
   //setTimeout(function() {
@@ -136,11 +140,15 @@ window.onload = () => {
         //Only for RIGHT HAND
         var num = (last_el["thumb4"][0]-last_el["palm"][0])
 
-        if (count == 5 && end_ex == false) {
+        if (count == 1 && end_ex == false) {
           end_ex = true; // exercise is completed
           end_sound.play();
           document.getElementById('img_container').style.background = '#FFEC69';
-          document.getElementById('popup_box').style.display = 'block';
+          // Make congrats message visible
+          document.getElementById('popup_wrapper').style.visibility = 'visible';
+          document.getElementById('congrats_msg').style.opacity = 1;
+          document.getElementById('congrats_msg').style.letterSpacing = '3px';
+
           draw_img(light_img_array[2]);
           //alert("Exercise completed");
           //clearInterval(repeat); // end loop
@@ -158,38 +166,64 @@ window.onload = () => {
           thumb_on_left = false;
           count++;
         }
-        // NEW CODE NEW CODE
+        // Delay loop for congrats message
+
+        else if (end_ex == true && delay!=0) {
+          delay--;
+          //console.log(delay);
+        }
         // Interaction to be carried out when exercise is completed
-        else if (end_ex == true) {
+        else if (end_ex==true){
           var mid = (last_el["bb"][0] + last_el["bb"][2])/2 // start calculating mid
+          var right = document.getElementById('restart');
+          var left = document.getElementById('end');
+          var rightCount = document.getElementById('restartCount')
+          var leftCount = document.getElementById('endCount')
+
+          // hide congrats message
+          document.getElementById('congrats_msg').style.letterSpacing = '0px';
+          document.getElementById('congrats_msg').style.opacity = 0;
+
+          //show end & restart selection buttons
+          left.style.visibility = 'visible';
+          left.style.opacity = 0.1;
+          right.style.visibility =  'visible';
+          right.style.opacity = 0.1;
+
           // RIGHT HAND SIDE INTERACTION
           if (mid<(vid.videoWidth/2)) {
             // Evaluate if side is coming from left (End button selected)
             if (end_select == true) {
+              leftCount.innerHTML = "5"; // reset left timer
               console.log('INTERVAL TIMER IS CLEARED');
               clearInterval(timer);
               timer_start = false;
+              left.style.opacity = 0.1;
             }
+            right.style.opacity = 0.6;
             end_select = false;
             if (timer_start == false) {
-              endEx('Restart exercise');
+              endEx('Restart exercise', rightCount);
             }
           }
           // LEFT HAND SIDE INTERACTION
           else if (mid>(vid.videoWidth/2)) {
             // Evaluate if side is coming from right (Restart button selected)
             if (end_select == false) {
+              rightCount.innerHTML = "5"; // reset right timer
               console.log('INTERVAL TIMER IS CLEARED');
               clearInterval(timer);
               timer_start = false;
+              right.style.opacity = 0.1;
             }
+            left.style.opacity = 0.6;
             end_select = true;
             if (timer_start == false) {
-              endEx('End exercise');
+              endEx('End exercise', leftCount);
             }
           }
         }
       }
-    }, 500);
+    }, 500);// cycle every 0.5s
   //}, 5000)
 }
