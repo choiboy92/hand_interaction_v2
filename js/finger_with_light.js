@@ -130,7 +130,10 @@ window.onload = () => {
 
   // delay = no. of cycles the message is displayed for
   var delay = 10; // initialise delay to be 0
+  var max_count = 10;// initialise the total number of reps
   document.getElementById('skip_button').style.display = 'block';
+  // write initial count
+  document.getElementById('count').innerHTML = max_count;
   // don't run redrawing until model is set up
   //setTimeout(function() {
   repeat = setInterval(function(){
@@ -140,7 +143,7 @@ window.onload = () => {
         //Only for RIGHT HAND
         var num = (last_el["thumb4"][0]-last_el["palm"][0])
 
-        if (count == 1 && end_ex == false) {
+        if (count == max_count && end_ex == false) {
           end_ex = true; // exercise is completed
           end_sound.play();
           document.getElementById('img_container').style.background = '#FFEC69';
@@ -165,6 +168,8 @@ window.onload = () => {
           draw_img(light_img_array[1]);
           thumb_on_left = false;
           count++;
+          // update count
+          document.getElementById('count').innerHTML = max_count-count;
         }
         // Delay loop for congrats message
 

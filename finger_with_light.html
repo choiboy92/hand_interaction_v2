@@ -246,6 +246,13 @@
           opacity: 0;
           transition: all 0.5s;
         }
+        #count_container {
+          display: flex;
+          flex-direction: row;
+          position: absolute;
+          right: 10px;
+          top: 20px;
+        }
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -278,7 +285,9 @@
 
 
     <div id="img_container">
-
+    <div id="count_container">
+      <p>Count: </p><p id="count" style="margin-left:10px;"></p>
+    </div>
     <!--<div id="popup_box"><button class="but" onClick="document.location.reload(true)">Restart?</button></div>-->
     <div id="popup_wrapper">
       <p id="congrats_msg">Congratulations!</p>
