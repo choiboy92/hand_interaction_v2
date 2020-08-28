@@ -172,7 +172,6 @@ window.onload = () => {
           document.getElementById('count').innerHTML = max_count-count;
         }
         // Delay loop for congrats message
-
         else if (end_ex == true && delay!=0) {
           delay--;
           //console.log(delay);
