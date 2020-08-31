@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        /*html, body
+        {
+            height: 100%
+        }*/
+/*        #logo
+        {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            top: 30%;
+            left:5%;
+
+        }
+
+
+
+        #video
+        {
+            position: relative;
+            top: 5%;
+            left: 5%;
+        }*/
+
+/*        #defaultCanvas0
+        {
+            position: relative;
+            top: 5%;
+            right: -5%;
+        }*/
+
+      /*  #webcam
+        {
+            position: relative;
+        }
+
+        #handcam
+        {
+            position: relative;
+        }*/
+
+        #video
+        {
+            transform: rotateY(180deg);
+            -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+            -moz-transform:rotateY(180deg); /* Firefox */
+        }
+
+        .row
+        {
+            margin:20px;
+        }
+
+        #logo, #logotext
+        {
+            display: block;
+          margin-left: auto;
+          margin-right: auto;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+
+
+
+
+
+</head>
+<body>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+    <script src="https://docs.opencv.org/3.4.0/opencv.js"> </script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"></script> -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+
+    <!-- <img id="logo" src="/logo" width="500" height="600"> -->
+
+    
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <video id="video"></video>
+                <p class="text-center" id ="webcam">Webcam View</p>
+            </div>
+            <div class="col-lg-6">
+                <div id="jumbo"></div>
+                <p class="text-center" id ="handcam">Single Hand Tracking</p>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <div class="d-flex justify-content-center">
+                <div class="text-center" id="logotext">Powered by</div>
+              <img class="mx-auto d-block" id="logo" src="/logo" width="10%" height="10%">
+            </div>
+        </div>
+
+    </div>
+<!-- 
+    <div style="width: 30%; height:150px; float: left;">
+        <video id="video"></video>
+</div>
+<div style="width: 65%; height:150px; float: right;">
+    <div id="jumbo"></div>
+</div> -->
+    
+
+
+
+
+<!-- <script src="./finger.js"></script> -->
+<script src="./public/fingerGetData.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+</body>
+</html>
