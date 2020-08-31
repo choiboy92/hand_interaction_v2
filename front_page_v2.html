@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -37,7 +37,7 @@
     justify-content: center;
     align-content: center;
   }
-  #topnav a {
+  #topnav .link {
     text-decoration:none;
     display: flex;
     align-items: center;
@@ -50,7 +50,7 @@
     margin-right: 20px;
     transition: all 0.5s;
   }
-  #topnav a:hover {
+  #topnav .link:hover {
     background-color: #77AFF7;
     font-size: 25px;
     color: white;
@@ -69,7 +69,7 @@
   }
   .button_container {
     position: absolute;
-    top: 60vh;
+    top: 70vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -84,8 +84,7 @@
     margin-right: 5vw;
     padding: 20px;
     border-radius: 5px;
-    border-color: black;
-    border-width: thick;
+    border: 5px solid black;
     width: 300px;
     color: black;
     font-size: 30px;
@@ -100,15 +99,22 @@
   }
   h1 {
     position: absolute;
-    top: 50px;
     font-size: 70px;
     font-weight: 800;
     text-align: center;
   }
   .hozWrapper {
+    margin-top: 100px;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    width: 100%;
+  }
+  .vertWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
   }
   .imgContainer {
@@ -122,34 +128,136 @@
     width: 100%;
     height: 100%;
   }
+  #demo_video
+  {
+      transform: rotateY(180deg);
+      -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+      -moz-transform:rotateY(180deg); /* Firefox */
+  }
 
+  .row
+  {
+      margin:20px;
+  }
+  #logoContainer {
+    width: 100px;
+  }
+
+  #logo, #logotext
+  {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #beginDemo {
+    border-radius: 5px;
+    border-color: black;
+    border width: 3px;
+    position: absolute;
+    font-size: 40px;
+    background-color:white;
+    transition: all 0.5s;
+  }
+  #beginDemo:hover {
+    background-color: #FE4A49;
+    color: white;
+  }
+
+  #overlay {
+    position: absolute;
+    display: flex;
+    z-index: 0;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: grey;
+    opacity: 0;
+    transition: all 0.5s;
+  }
+  .stretchstep {
+    height: 40vh;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #beginStory {
+    width: 80%;
+    background-color: #EF626C;
+    font-size: 40px;
+    color: white;
+    transition: all 0.5s;
+    border-radius: 5px;
+    border-color: black;
+    border width: 3px;
+  }
+  #beginStory:hover {
+    background-color: white;
+    color: #EF626C;
+  }
+  .lang_select {
+    width: 50px;
+    position: fixed;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+  }
+  .lang_select a {
+    font-size: 15px;
+    color: black;
+    writing-mode: vertical-rl;
+  }
+  .lang_select_active, .lang_select a:hover {
+    color: #EF626C;
+  }
   </style>
 
 </head>
 <body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.dev.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+  <script src="https://docs.opencv.org/3.4.0/opencv.js"> </script>
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> -->
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"></script> -->
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script> -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
   <div id="topnav">
-    <a class="active" href="#intro">Home</a>
-    <a href="#about">About</a>
-    <a href="#demo">Demo</a>
-    <a href="#stretch">Stretch</a>
-    <a href="#info">Info</a>
+    <a class="link" key="intro" href="#intro">Home</a>
+    <a class="link" key="about" href="#about">About</a>
+    <a class="link" key="demo" href="#demo">Demo</a>
+    <a class="link" key="stretch" href="#stretch">Stretch</a>
+    <a class="link" key="info" href="#info">Info</a>
+    <div class="lang_select">
+      <a class="translate" href="#" id="en">English</a>
+      <a class="translate" href="#" id="kr">한국어</a>
+    </div>
   </div>
+
   <div class="content">
     <section id="intro">
       <div class="sectionView" style="background-color: rgba(119, 175, 247,1);">
-        <video id="intro_vid" src="intro_vid/intro_vid_comp.mov" class="preview" loop autoplay></video>
+        <video id="intro_vid" src="intro_vid/intro_vid_comp.mov" class="preview" autoplay></video>
         <div class="button_container">
-          <a class="button" id="aboutButt" href="#about" style="background-color:#FE4A49;">About</a>
-          <a class="button" id="demoButt" href="#demo" style="background-color:#A2FAA3;">Demo</a>
-          <a class="button" id="stretchButt" href="#stretch" style="background-color:#FEC601;">Stretch</a>
+          <a class="button" key="aboutButt" id="aboutButt" href="#about" style="background-color:#FE4A49;">About</a>
+          <a class="button" key="demoButt" id="demoButt" href="#demo" style="background-color:#A2FAA3;" onclick="begindemo()">Demo</a>
+          <a class="button" key="stretchButt" id="stretchButt" href="#stretch" style="background-color:#FEC601;">Stretch</a>
         </div>
       </div>
     </section>
     <section id="about">
       <div class="sectionView" style="background-color: white;">
-        <h1> What is NeuToy?</h1>
+        <h1 style="top:50px;"> What is NeuToy?</h1>
         <div class="hozWrapper">
           <p>Text about how great Neutoy is and what is so amazing about it</p>
           <div class="imgContainer">
@@ -159,28 +267,120 @@
       </div>
     </section>
     <section id="demo">
-      <div class="sectionView" style="background-color: blue;">
+      <div class="sectionView" style="background-color: #2E4756;">
+        <h1 style="color:white;top:50px;">Tech demo</h1>
+        <div id="overlay"><h1 id="wavePrompt">Wave</h1></div>
+        <button id="beginDemo" onclick="begindemo()">click to start demo</button>
+        <div class="hozWrapper" style="width:75%;">
+          <div class="vertWrapper">
+            <video id="demo_video" width="384" height="288"></video>
+            <p class="text-center" id ="webcam" style="color:white;">Webcam View</p>
+          </div>
+          <div class="vertWrapper">
+            <div id="jumbo"></div>
+            <p class="text-center" id ="handcam" style="color:white;">Single Hand Tracking</p>
+          </div>
+        </div>
 
-      </div>
+        <div class="row d-flex justify-content-center">
+            <div class="d-flex justify-content-center">
+                <div class="text-center" id="logotext" style="color:white;">Powered by</div>
+                <div id="logoContainer" width="200px">
+                  <img class="mx-auto d-block" id="logo" src="img/NeuToy Logo Whale.png"><!-- width="10%" height="10%">-->
+                </div>
+
+            </div>
+        </div>
     </section>
     <section id="stretch">
-      <div class="sectionView" style="background-color: yellow;">
+      <div class="sectionView" style="background-color: #717FEB;">
+      <div class="vertWrapper">
+        <div class="hozWrapper" style="margin-top:0px;">
+          <div id="stretch1" class="stretchstep">
 
+          </div>
+          <div id="stretch2" class="stretchstep">
+
+          </div>
+        </div>
+        <div class="hozWrapper" style="margin-top:0px;">
+          <div id="stretch3" class="stretchstep">
+
+          </div>
+          <div id="stretch4" class="stretchstep">
+            <button id="beginStory">Play</button>
+          </div>
+        </div>
+
+      </div>
       </div>
     </section>
     <section id="info">
-      <div class="sectionView" style="background-color: green;">
+      <div class="sectionView" style="background-color: #CDEEFA;">
 
       </div>
     </section>
   </div>
 </body>
+<script src="fingerGetData_demo.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+  /*var arrLang_link = {
+    'en' : {
+      'intro': 'Home',
+      'about': 'About',
+      'demo': 'Demo',
+      'stretch': 'Stretch',
+      'info': 'Info',
+    },
+    'kr' : {
+      'intro': '홈',
+      'about': '어바웃',
+      'demo': '대모',
+      'stretch': '스트레치',
+      'info': '안내',
+    }
+  }
+  var arrLang_butt = {
+    'en' : {
+      'aboutButt': 'About',
+      'demoButt': 'Demo',
+      'stretchButt': 'Stretch',
+    },
+    'kr' : {
+      'aboutButt': '어바웃',
+      'demoButt': '대모',
+      'stretchButt': '스트레치',
+    }
+  }
+
+  $(function() {
+    $('.translate').click(function() {
+      var lang = $(this).attr('id');
+
+      $('.link').each(function(index,element) {
+        $(this).text(arrLang_link[lang][$(this).attr('key')]);
+      });
+      $('.button').each(function(index,element) {
+        $(this).text(arrLang_butt[lang][$(this).attr('key')]);
+      });
+    });
+  });*/
+
   window.onload = () => {
     window.location.href = '#intro';
   }
+
+
+  var intro_vid = document.getElementById('intro_vid')
+  intro_vid.onended = function() {
+    console.log('intro_video ended');
+    $(this).fadeOut(500,"linear");
+  };
   $(function() {
-    $('#topnav a').on('click', function(){
+    $('#topnav .link').on('click', function(){
       $('html,body').animate({
         scrollTop: $($.attr(this, 'href')).offset().top
       }, 1000); //500 = 0.5s

@@ -10,22 +10,22 @@ let brain;
 let trainingData = []
 let start_draw = false;
 
-function successCallback(stream) {
+/*function successCallback(stream) {
   console.log("success camear")
     video.width = 640; video.height = 480;//prevent Opencv.js error.
     video.srcObject = stream;
     video.play();
     video.style.display = "none"
     captureStart = true
-}
-
+}*/
+/*
 const constraints = {
     video: { facingMode: "user", }, audio: false
 };
-
-function errorCallback(error) {
+*/
+/*function errorCallback(error) {
     console.log(error);
-}
+}*/
 
 
 // navigator.mediaDevices.getUserMedia(constraints, successCallback, errorCallback)
