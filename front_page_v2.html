@@ -8,9 +8,9 @@
   html, body {
     font-family: 'Avenir';
     color: black;
-    scroll-behavior: smooth;
   }
   .content {
+    scroll-behavior: smooth;
     height: 100vh;
     overflow: scroll;
     scroll-snap-type: y mandatory;
@@ -25,6 +25,8 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
   }
   #topnav {
     position: fixed;
@@ -33,7 +35,7 @@
     width: 100%;
     display: flex;
     height: 50px;
-    background-color: rgba(191, 191, 191, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     justify-content: center;
     align-content: center;
   }
@@ -50,7 +52,7 @@
     margin-right: 20px;
     transition: all 0.5s;
   }
-  #topnav .link:hover {
+  #topnav .link_active ,#topnav .link:hover {
     background-color: #77AFF7;
     font-size: 25px;
     color: white;
@@ -60,11 +62,12 @@
     color: white;
   }*/
   .preview {
-    position: relative;
+    top: 50px;
+    position: absolute;
     z-index: 1;
     margin: 0 auto;
-    max-height: 100%;
-    max-width: 100%;
+    max-height: 60%;
+    max-width: 60%;
     opacity: 0.75;
   }
   .button_container {
@@ -124,7 +127,6 @@
     margin-left: 50px
   }
   img {
-    border-radius: 5px;
     width: 100%;
     height: 100%;
   }
@@ -218,6 +220,7 @@
     word-wrap: break-word;
     font-size: 20px;
   }
+
   </style>
 
 </head>
@@ -253,8 +256,8 @@
 
   <div class="content">
     <section id="intro">
-      <div class="sectionView" style="background-color: rgba(119, 175, 247,1);">
-        <video id="intro_vid" src="intro_vid/intro_vid_comp.mov" class="preview" autoplay></video>
+      <div class="sectionView" style="background-image: url(img/bg_1.svg);background-size: 100% 70%;background-position: center bottom;;">
+        <video id="intro_vid" src="intro_vid/intro_vid_comp.mov" class="preview" autoplay muted></video>
         <div class="button_container">
           <a class="button" id="aboutButt" href="#about" style="background-color:#FE4A49;">About</a>
           <a class="button" id="demoButt" href="#demo" style="background-color:#A2FAA3;" onclick="begindemo()">Demo</a>
@@ -263,16 +266,16 @@
       </div>
     </section>
     <section id="about">
-      <div class="sectionView" style="background-color: white;">
+      <div class="sectionView" style="background-image: url(img/bg_2.svg);">
         <h1 style="top:50px;"> What is NeuToy?</h1>
         <div class="hozWrapper">
-          <div class="vertWrapper" style="width:50%;">
-            <p>숨 쉬기도 바쁜 현대인을 위해 '뉴토이'가 태어났습니다.
+          <div class="vertWrapper" style="width:50%;margin-left:50px;">
+            <p style="color:black;">숨 쉬기도 바쁜 현대인을 위해 '뉴토이'가 태어났습니다.
               뉴토이는 웹캠을 통해 사용자의 동작을 인식하고 개선점을 찾아 냅니다.
               인터렉션 게임 스토리에 따라 특정 동작들을 반복, 완수 하면 저절로(사용자도 모르는 사이에) 스트레칭을 하게 됩니다.
               <br><br>우리의 기술은 간단한 동작을 반복하면서 스트레칭 효과가 나타나 자세교정 뿐만
-              아니라 스트레스 완화에도 도움을 줄 수 있습니다.<br></p>
-            <p><br>NeuToy was built for the hectic modern worker.
+              아니라 스트레스 완화에도 도움을 줄 수 있습니다.</p>
+            <p style="color:white;">NeuToy was built for the hectic modern worker.
             NeuToy uses your webcam to track your hand position and movement.
             Through interactive games & stories, you repeat exercises that help stretch and relax
             your wrist and forearm without you even noticing.<br><br>
@@ -287,24 +290,24 @@
       </div>
     </section>
     <section id="demo">
-      <div class="sectionView" style="background-color: #2E4756;">
+      <div class="sectionView" style="background-image: url(img/bg_3.svg);">
         <h1 style="color:white;top:50px;">Tech demo</h1>
         <div id="overlay"><h1 id="wavePrompt">Wave</h1></div>
         <button id="beginDemo" onclick="begindemo()">click to start demo</button>
         <div class="hozWrapper" style="width:75%;">
           <div class="vertWrapper">
             <video id="demo_video" width="384" height="288"></video>
-            <p class="text-center" id ="webcam" style="color:white;">Webcam View</p>
+            <p class="text-center" id ="webcam" style="color:grey;">Webcam View</p>
           </div>
           <div class="vertWrapper">
             <div id="jumbo"></div>
-            <p class="text-center" id ="handcam" style="color:white;">Single Hand Tracking</p>
+            <p class="text-center" id ="handcam" style="color:grey;">Single Hand Tracking</p>
           </div>
         </div>
 
         <div class="row d-flex justify-content-center">
             <div class="d-flex justify-content-center">
-                <div class="text-center" id="logotext" style="color:white;">Powered by</div>
+                <div class="text-center" id="logotext" style="color:grey;">Powered by</div>
                 <div id="logoContainer" width="200px">
                   <img class="mx-auto d-block" id="logo" src="img/NeuToy Logo Whale.png"><!-- width="10%" height="10%">-->
                 </div>
@@ -313,7 +316,7 @@
         </div>
     </section>
     <section id="stretch">
-      <div class="sectionView" style="background-color: #717FEB;">
+      <div class="sectionView" style="background-color: white;">
       <div class="vertWrapper">
         <div class="hozWrapper" style="margin-top:0px;">
           <div id="stretch1" class="stretchstep">
@@ -389,6 +392,21 @@
     });
   });*/
 
+  $(function() {
+    var activeTab;
+    $('#topnav .link').click(function() {
+      if (activeTab == null) {
+        activeTab = $(this);
+        activeTab.toggleClass('link_active');
+      }
+      else {
+        activeTab.toggleClass('link_active');
+        activeTab = $(this);
+        activeTab.toggleClass('link_active');
+      }
+    })
+  })
+
   window.onload = () => {
     window.location.href = '#intro';
   }
@@ -399,12 +417,6 @@
     console.log('intro_video ended');
     $(this).fadeOut(500,"linear");
   };
-  $(function() {
-    $('#topnav .link').on('click', function(){
-      $('html,body').animate({
-        scrollTop: $($.attr(this, 'href')).offset().top
-      }, 1000); //500 = 0.5s
-    });
-  });
+
 </script>
 </html>
