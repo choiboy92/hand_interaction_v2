@@ -150,11 +150,12 @@
     margin-right: auto;
   }
   #beginDemo {
+    width: 200px;
     border-radius: 5px;
     border-color: black;
     border width: 3px;
     position: absolute;
-    font-size: 40px;
+    font-size: 20px;
     background-color:white;
     transition: all 0.5s;
   }
@@ -211,6 +212,12 @@
   .lang_select_active, .lang_select a:hover {
     color: #EF626C;
   }
+  p {
+    text-align: justify;
+    text-justify: inter-word;
+    word-wrap: break-word;
+    font-size: 20px;
+  }
   </style>
 
 </head>
@@ -239,8 +246,8 @@
     <a class="link" href="#stretch">Stretch</a>
     <a class="link" href="#info">Info</a>
     <div class="lang_select">
-      <a class="translate" href="#" id="en">English</a>
-      <a class="translate" href="#" id="kr">한국어</a>
+      <a class="translate" href="#" >English</a>
+      <a class="translate" href="#" >한국어</a>
     </div>
   </div>
 
@@ -259,7 +266,20 @@
       <div class="sectionView" style="background-color: white;">
         <h1 style="top:50px;"> What is NeuToy?</h1>
         <div class="hozWrapper">
-          <p>Text about how great Neutoy is and what is so amazing about it</p>
+          <div class="vertWrapper" style="width:50%;">
+            <p>숨 쉬기도 바쁜 현대인을 위해 '뉴토이'가 태어났습니다.
+              뉴토이는 웹캠을 통해 사용자의 동작을 인식하고 개선점을 찾아 냅니다.
+              인터렉션 게임 스토리에 따라 특정 동작들을 반복, 완수 하면 저절로(사용자도 모르는 사이에) 스트레칭을 하게 됩니다.
+              <br><br>우리의 기술은 간단한 동작을 반복하면서 스트레칭 효과가 나타나 자세교정 뿐만
+              아니라 스트레스 완화에도 도움을 줄 수 있습니다.<br></p>
+            <p><br>NeuToy was built for the hectic modern worker.
+            NeuToy uses your webcam to track your hand position and movement.
+            Through interactive games & stories, you repeat exercises that help stretch and relax
+            your wrist and forearm without you even noticing.<br><br>
+            Our technology combined with simple stretches not only helps one's resting posture
+            but alleviates stress for your wellbeing.</p>
+          </div>
+
           <div class="imgContainer">
             <img src="img/logo page.001.jpeg">
           </div>
