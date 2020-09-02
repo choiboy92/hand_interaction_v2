@@ -117,7 +117,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     width: 100%;
   }
   .imgContainer {
@@ -226,6 +225,19 @@
     text-align: center;
     font-weight: 200;
   }
+  .sns_icon_container {
+    width: 90%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 18%; /*4 sns icons each inc. padding*/
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    transition: all 1s ease;
+  }
+  .sns_icon_container:hover {
+    /*transform: translateX(20px);*/
+    width: 100%
+  }
 
   </style>
 
@@ -301,11 +313,11 @@
         <div id="overlay"><h1 id="wavePrompt">Wave</h1></div>
         <button id="beginDemo" onclick="begindemo()">click to start demo</button>
         <div class="hozWrapper" style="width:75%;">
-          <div class="vertWrapper">
+          <div class="vertWrapper" style="align-items: center;">
             <video id="demo_video" width="384" height="288"></video>
             <p class="text-center" id ="webcam" style="color:grey;">Webcam View</p>
           </div>
-          <div class="vertWrapper">
+          <div class="vertWrapper" style="align-items: center;">
             <div id="jumbo"></div>
             <p class="text-center" id ="handcam" style="color:grey;">Single Hand Tracking</p>
           </div>
@@ -344,7 +356,20 @@
     </section>
     <section id="info">
       <div class="sectionView" style="background-color: #CDEEFA;">
-
+        <div class="vertWrapper" style="width:40%;position:absolute;left:0;top:50px;height:85%;">
+          <a class="sns_icon_container" style="background-color:red;" href="https://www.youtube.com">
+            <img src="sns_icon/youtube.svg" style="padding:15px;">
+          </a>
+          <a class="sns_icon_container" style="background-color:#FEEA12;">
+            <img src="sns_icon/kakaotalk.svg" style="padding:15px;">
+          </a>
+          <a class="sns_icon_container" style="background-color:#495896;" href="https://www.facebook.com">
+            <img src="sns_icon/facebook-white.svg" style="padding:15px;">
+          </a>
+          <a class="sns_icon_container" style="background-color:white;" href="https://www.instagram.com">
+            <img src="sns_icon/instagram.svg" style="padding:15px;">
+          </a>
+        </div>
       </div>
     </section>
   </div>
