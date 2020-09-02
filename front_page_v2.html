@@ -72,7 +72,7 @@
   }
   .button_container {
     position: absolute;
-    top: 70vh;
+    top: 75vh;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -81,24 +81,25 @@
     height: 100px;
   }
   .button {
+    color: white;
     text-align: center;
-    letter-spacing: 5px;
+    letter-spacing: 2px;
     margin-left: 5vw;
     margin-right: 5vw;
     padding: 20px;
-    border-radius: 5px;
-    border: 5px solid black;
+    border-radius: 05px;
+    border: 5px solid white;
     width: 300px;
-    color: black;
     font-size: 30px;
-    opacity: 0.7;
+    /*opacity: 0.7;*/
     font-weight: 400;
     transition: all 0.5s;
   }
   .button:hover {
-    opacity: 1;
-    text-decoration:none;
     color: white;
+    border-radius: 60px;
+    text-decoration:none;
+    /*border-color: #AAD1FC;*/
   }
   h1 {
     position: absolute;
@@ -151,18 +152,20 @@
     margin-right: auto;
   }
   #beginDemo {
-    width: 200px;
+    width: 150px;
+    height: 70px;
     border-radius: 5px;
-    border-color: black;
-    border width: 3px;
+    border: 5px solid white;
     position: absolute;
     font-size: 20px;
-    background-color:white;
+    color: white;
+    background-color:rgba(255,255,255,0);
     transition: all 0.5s;
   }
   #beginDemo:hover {
     background-color: #FE4A49;
     color: white;
+    border-radius: 60px;
   }
 
   #overlay {
@@ -191,16 +194,16 @@
     font-size: 40px;
     color: white;
     transition: all 0.5s;
-    border-radius: 50px;
-    border-color: black;
-    border width: 3px;
+    border-radius: 5px;
+    border: 5px solid black;
     letter-spacing: 5px;
   }
   #beginStory:hover {
     background-color: white;
     color: #77AFF7;
+    border-radius: 60px;
   }
-  .lang_select {
+  /*.lang_select {
     width: 50px;
     position: fixed;
     right: 0;
@@ -214,7 +217,7 @@
   }
   .lang_select_active, .lang_select a:hover {
     color: #EF626C;
-  }
+  }*/
   p {
     text-align: justify;
     text-justify: inter-word;
@@ -272,10 +275,10 @@
     <a class="link" href="#demo">Demo</a>
     <a class="link" href="#stretch">Stretch</a>
     <a class="link" href="#contact">Contact</a>
-    <div class="lang_select">
+    <!--<div class="lang_select">
       <a class="translate" href="#" >English</a>
       <a class="translate" href="#" >한국어</a>
-    </div>
+    </div>-->
   </div>
 
   <div class="content">
@@ -283,9 +286,9 @@
       <div class="sectionView" style="background-image: url(img/bg_1.svg);background-size: 100% 70%;background-position: center bottom;;">
         <video id="intro_vid" src="intro_vid/intro_vid_comp.mov" class="preview" autoplay muted></video>
         <div class="button_container">
-          <a class="button" id="aboutButt" href="#about" style="background-color:#FE4A49;">About</a>
-          <a class="button" id="demoButt" href="#demo" style="background-color:#A2FAA3;" onclick="begindemo()">Demo</a>
-          <a class="button" id="stretchButt" href="#stretch" style="background-color:#FEC601;">Stretch</a>
+          <a class="button" id="aboutButt" href="#about">About</a>
+          <a class="button" id="demoButt" href="#demo" onclick="begindemo()">Demo</a>
+          <a class="button" id="stretchButt" href="#stretch">Stretch</a>
         </div>
       </div>
     </section>
@@ -317,7 +320,7 @@
       <div class="sectionView" style="background-image: url(img/bg_3.svg);">
         <h1 style="color:white;top:50px;">Tech demo</h1>
         <div id="overlay"><h1 id="wavePrompt">Wave</h1></div>
-        <button id="beginDemo" onclick="begindemo()">click to start demo</button>
+        <button id="beginDemo" onclick="begindemo()">start demo</button>
         <div class="hozWrapper" style="width:75%;">
           <div class="vertWrapper" style="align-items: center;">
             <video id="demo_video" width="384" height="288"></video>
@@ -343,7 +346,7 @@
       <div class="sectionView" style="background-color: white;">
       <div class="hozWrapper" style="margin-top:0px;">
         <div class="vertWrapper">
-          <img src="img/Neuman and Whale-01.svg" style="height:80%;">
+          <img src="img/Neuman and Welson.svg" style="height:80%;">
         </div>
         <div class="vertWrapper">
           <div id="stretch3" class="stretchstep" >
@@ -361,7 +364,7 @@
       </div>
     </section>
     <section id="contact">
-      <div class="sectionView" style="background-color: #CDEEFA;">
+      <div class="sectionView" style="background-image: url(img/bg_end.svg);background-size: 100% 80%;background-position: center bottom;;">
         <div class="vertWrapper" style="width:40%;position:absolute;left:0;top:70px;height:85%;">
           <a class="sns_icon_container" style="background-color:red;" href="https://www.youtube.com">
             <img src="sns_icon/youtube.svg" style="padding:15px;">
