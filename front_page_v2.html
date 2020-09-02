@@ -270,7 +270,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
   <div id="topnav">
-    <a class="link" href="#intro">Home</a>
+    <a class="link link_active" href="#intro">Home</a>
     <a class="link" href="#about">About</a>
     <a class="link" href="#demo">Demo</a>
     <a class="link" href="#stretch">Stretch</a>
@@ -287,7 +287,7 @@
         <video id="intro_vid" src="intro_vid/intro_vid_comp.mov" class="preview" autoplay muted></video>
         <div class="button_container">
           <a class="button" id="aboutButt" href="#about">About</a>
-          <a class="button" id="demoButt" href="#demo" onclick="begindemo()">Demo</a>
+          <a class="button" id="demoButt" href="#demo">Demo</a>
           <a class="button" id="stretchButt" href="#stretch">Stretch</a>
         </div>
       </div>
@@ -433,24 +433,46 @@
     });
   });*/
 
-  $(function() {
+  // make tab active on click for topnav
+  // NOT NEEDED AS SCROLL DOES IT AUTOMATICALLY DURING
+  // MOVE TO THE SELECTED SECTION
+  /*$(function() {
     var activeTab;
     $('#topnav .link').click(function() {
       if (activeTab == null) {
         activeTab = $(this);
-        activeTab.toggleClass('link_active');
+        activeTab.addClass('link_active');
       }
       else {
-        activeTab.toggleClass('link_active');
+        activeTab.removeClass('link_active');
         activeTab = $(this);
-        activeTab.toggleClass('link_active');
+        activeTab.addClass('link_active');
       }
     })
-  })
+  })*/
+
+  var buffer = 150; // pixels from bottom at which active tab switches
+  function onScroll(event){
+    var scrollPos = $(document).scrollTop();
+    $('#topnav .link').each(function () {
+        var currLink = $(this);
+        var refElement = $(currLink.attr("href"));
+        if (refElement.position().top <= scrollPos +buffer && refElement.position().top + refElement.height()> scrollPos+buffer) {
+            $('#topnav .link').removeClass("link_active");
+            currLink.addClass("link_active");
+        }
+        else{
+            currLink.removeClass("link_active");
+        }
+    });
+  }
 
   window.onload = () => {
     window.location.href = '#intro';
   }
+  $(document).ready(function () {
+    $('.content').on("scroll", onScroll);
+  });
 
 
   var intro_vid = document.getElementById('intro_vid')
@@ -458,6 +480,7 @@
     console.log('intro_video ended');
     $(this).fadeOut(500,"linear");
   };
+
 
 </script>
 </html>
