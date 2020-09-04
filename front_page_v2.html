@@ -348,7 +348,7 @@
     <!--<a class="link link_active" href="#intro">Home</a>-->
     <a class="link" href="#home">Home</a>
     <a class="link" href="#demo">Demo</a>
-    <a class="link" href="#play">Play</a>
+    <a class="link" href="#play" style="font-weight:800;color:#03D55F;">PLAY</a>
     <a class="link" href="#about">About</a>
     <!--<div class="lang_select">
       <a class="translate" href="#" >English</a>
@@ -375,14 +375,17 @@
         <div style="position:absolute;right:50px;bottom:22%;width:25%;">
           <img src="img/Just Welson-01.svg">
         </div>
+        <div class="imgContainer" style="position:absolute;width:100px;bottom:0;">
+          <img id="chevron" src="img/downScrollChevron.svg">
+        </div>
       </div>
     </section>
     <section id="home">
-      <div class="sectionView" style="height:300vh;background-image: url(img/bg_2.svg);">
-        <div style="position:absolute;width:23%;top:100px; left:5px;">
-          <img src="img/Just Neuman-01.svg">
+      <div class="sectionView" style="height:200vh;background-image: url(img/bg_2.svg);">
+        <div style="position:absolute;width:23%;top:100px; left:-120px;">
+          <img src="img/Just Neuman-01.svg" style="transform:rotate(30deg);">
         </div>
-        <div class="hozWrapper"style="position:absolute;top:100px;width:75%;right:5px">
+        <!--<div class="hozWrapper"style="position:absolute;top:100px;width:75%;right:5px">
           <div class="vertWrapper" style="max-width:50%;">
             <p style="color:black;">숨 쉬기도 바쁜 현대인을 위해 '뉴토이'가 태어났습니다.
               뉴토이는 웹캠을 통해 사용자의 동작을 인식하고 개선점을 찾아 냅니다.
@@ -399,15 +402,22 @@
           <div class="imgContainer">
             <img class="keepRatio" src="img/Waving-at-Computer.gif">
           </div>
+        </div> -->
+
+        <div class="imgContainer" style="position:absolute; width:90%;right:-100px;top:10px;">
+          <img src="img/Home-01.svg">
         </div>
         <div style="position:absolute;bottom:0;right:-30px;width:40%">
           <img src="img/Lady at Desk-01.svg">
         </div>
+        <div style="position:absolute;bottom:0;left:20%;width:30%">
+          <img src="img/demo.gif" style="opacity:1;filter: brightness(1.11);">
+        </div>
       </div>
     </section>
     <section id="demo">
-      <div class="sectionView" style="background-image: url(img/bg_3.svg);">
-        <h1 style="color:white;top:50px;">Click 'start' to try our tech</h1>
+      <div class="sectionView" style="background-image: url(img/bg_3.svg);height:595px;">
+        <h1 style="color:white;top:70px;">Click 'start' to try our tech</h1>
         <div id="overlay">
           <div id="overlayCont" class="imgContainer">
             <h1 id="wavePrompt">Wave</h1>
@@ -415,18 +425,18 @@
           </div>
         </div>
         <!--<button id="beginDemo" onclick="begindemo()">Start</button>-->
-        <div class="imgContainer" style="width:200px;position:absolute;top:220px;z-index:1;">
+        <div class="imgContainer" style="width:200px;position:absolute;top:270px;z-index:1;">
           <img id="startButton" src="img/buttons/Start.svg" style="transition: all 0.5s;" onclick="begindemo()">
         </div>
-        <div class="hozWrapper" style="width:75%;position:absolute;top:130px;">
+        <div class="hozWrapper" style="width:75%;position:absolute;top:180px;">
           <div class="vertWrapper" style="align-items: center;">
             <video id="demo_video" width="384" height="288" style="border-radius:20px;z-index:1;"></video>
             <div id="videoPlaceholder"></div>
-            <p class="text-center" id ="webcam" style="color:white;">Webcam View</p>
+            <p class="text-center" id ="webcam" style="color:black;">Webcam View</p>
           </div>
           <div class="vertWrapper" style="align-items: center;">
             <div id="jumbo"></div>
-            <p class="text-center" id ="handcam" style="color:white;">Single Hand Tracking</p>
+            <p class="text-center" id ="handcam" style="color:black;">Single Hand Tracking</p>
           </div>
         </div>
 
@@ -443,11 +453,11 @@
     <section id="play">
       <div class="sectionView" style="background-color:white;">
       <!--<button id="beginStory">PLAY</button>-->
-      <h1 style="position:relative;margin-top:50px;margin-bottom:50px">Be better.</h1>
+      <h1 style="position:relative;margin-top:50px;margin-bottom:30px">Start today,<br>be better tomorrow.</h1>
       <div class="imgContainer" style="width:200px;z-index:1;">
         <img id="playButton" src="img/buttons/Play.svg" style="transition: all 0.5s;">
       </div>
-      <div class="hozWrapper" style="flex-flow:wrap; height:100%; margin-top:80px;">
+      <div class="hozWrapper" style="flex-flow:wrap;height:100%;margin-top:50px;">
           <div class="stretchstep" id="stretch1">
             <!--<div class="numContainer"> <h2 class="num">1</h2> </div>-->
             <img src="img/Woman at desk.svg">
@@ -472,6 +482,24 @@
     </section>
     <section id="about">
       <div class="sectionView" style="height:200vh;background-image: url(img/bg_end.svg);background-size: 100% 80%;background-position: center bottom;">
+        <div class="hozWrapper"style="position:absolute;top:100px;width:75%;right:5px">
+          <div class="vertWrapper" style="max-width:50%;">
+            <p style="color:black;">숨 쉬기도 바쁜 현대인을 위해 '뉴토이'가 태어났습니다.
+              뉴토이는 웹캠을 통해 사용자의 동작을 인식하고 개선점을 찾아 냅니다.
+              인터렉션 게임 스토리에 따라 특정 동작들을 반복, 완수 하면 저절로(사용자도 모르는 사이에) 스트레칭을 하게 됩니다.
+              <br><br>우리의 기술은 간단한 동작을 반복하면서 스트레칭 효과가 나타나 자세교정 뿐만
+              아니라 스트레스 완화에도 도움을 줄 수 있습니다.</p>
+            <p style="color:black;">NeuToy was built for the hectic modern worker.
+            NeuToy uses your webcam to track your hand position and movement.
+            Through interactive games & stories, you repeat exercises that help stretch and relax
+            your wrist and forearm without you even noticing.<br><br>
+            Our technology combined with simple stretches not only helps one's resting posture
+            but alleviates stress for your wellbeing.</p>
+          </div>
+          <div class="imgContainer">
+            <img class="keepRatio" src="img/Waving-at-Computer.gif">
+          </div>
+        </div>
         <div class="contact">
           <div class="vertWrapper" style="width:40%;position:absolute;left:0;height:90%;">
             <a class="sns_icon_container" style="background-color:red;" href="https://www.youtube.com/channel/UCOpV5-2OuicC9NS8bSU6f4w/featured">
@@ -582,6 +610,14 @@
       animDone = true;
     }
   }
+  anime({
+    targets:'#chevron',
+    loop:true,
+    easing: 'easeOutSine',
+    translateY:['-20px','10px'],
+    direction:'alternate',
+    duration:300,
+  })
 
   window.onload = () => {
     window.location.href = '#intro';

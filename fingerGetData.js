@@ -120,7 +120,7 @@ var data = new Array();
 
 async function draw() {
     clear();
-    background('#222222');
+    background('#152ABA');
     stroke(0,255,0);
     translate(256, 0);
     scale(-0.4,0.4);

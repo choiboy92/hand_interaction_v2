@@ -41,7 +41,7 @@ function begindemo() {
   }).catch(function (error) {
       console.error(error.message);
   });
-  
+
   var prompt = setInterval(function() {
     if (start_draw == true) {
       $('#overlay').fadeOut(1000);
