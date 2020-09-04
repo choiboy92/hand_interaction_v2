@@ -10,14 +10,15 @@
     color: black;
   }
   .content {
+    overflow-x: hidden;
     scroll-behavior: smooth;
     height: 100vh;
-    overflow: scroll;
-    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    /*scroll-snap-type: y mandatory;*/
   }
   .sectionView {
     position: relative;
-    scroll-snap-align: start;
+    /*scroll-snap-align: start;*/
     z-index: 0;
     display: flex;
     flex-direction: column;
@@ -108,12 +109,12 @@
   }
   h1 {
     position: absolute;
-    font-size: 70px;
-    font-weight: 800;
+    font-size: 60px;
+    font-weight: 500;
     text-align: center;
+    margin: 0;
   }
   .hozWrapper {
-    margin-top: 100px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -184,22 +185,23 @@
     align-items: center;
     width: 100%;
     height: 100vh;
-    background-color: grey;
-    opacity: 0;
-    transition: all 0.5s;
+    background-color: rgba(150,150,150,0.8);
+    transition: all 0.1s;
+    display: none;
   }
   .stretchstep {
     height: 45vh;
-    width: 50vw;
-    padding: 30px 10px 30px 10px;
+    width: 28vw;
+    padding: 0px 25px 0px 25px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
   #beginStory {
-    height: 40%;
-    width: 40%;
+    margin-top: 100px;
+    height: 200px;
+    width: 300px;
     background-color: #77AFF7;
     font-size: 40px;
     color: white;
@@ -257,11 +259,69 @@
     width:50%;
     position:absolute;
     right:0;
-    top:70px;
-    height:85%;
+    /*top:70px;*/
+    height:100%;
+    overflow: hidden;
   }
   #IntroLogo {
     display: none;
+  }
+  #overlayCont {
+    margin: auto;
+    width:60%;
+    height: 80%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  .keepRatio {
+    width: 100%;
+    height: auto;
+  }
+  .numContainer {
+    padding: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #FE4A49;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .num {
+     color: white;
+     margin: 0;
+     margin-top: 5px;
+     font-family: 'Didot Regular';
+     font-style: italic;
+  }
+  #playButton:hover, #startButton:hover {
+    display: block;
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+  .contact {
+    width: 100vw;
+    height: 90vh;
+    position: absolute;
+    bottom: 0;
+  }
+  #videoPlaceholder {
+    width: 384px;
+    height: 288px;
+    position: absolute;
+    z-index: 0;
+    background-color: grey;
+    top: 3px;
+    border-radius: 20px;
   }
   </style>
 
@@ -285,11 +345,11 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
   <div id="topnav">
-    <a class="link link_active" href="#intro">Home</a>
-    <a class="link" href="#about">About</a>
+    <!--<a class="link link_active" href="#intro">Home</a>-->
+    <a class="link" href="#home">Home</a>
     <a class="link" href="#demo">Demo</a>
-    <a class="link" href="#stretch">Stretch</a>
-    <a class="link" href="#contact">Contact</a>
+    <a class="link" href="#play">Play</a>
+    <a class="link" href="#about">About</a>
     <!--<div class="lang_select">
       <a class="translate" href="#" >English</a>
       <a class="translate" href="#" >한국어</a>
@@ -298,26 +358,32 @@
 
   <div class="content">
     <section id="intro">
-      <div class="sectionView" style="background-image: url(img/bg_1.svg);background-size: 100% 70%;background-position: center bottom;;">
-        <div id="IntroLogo" style="width:70vw;position:absolute; top:100px;">
+      <div class="sectionView" style="background-image: url(img/bg_1.svg);background-size: 100% 70%;background-position: center bottom;">
+        <div id="IntroLogo" style="width:40vw;position:absolute; top:100px;">
           <img src="img/NeuToy Logo.png">
-          <h3 style="margin-top:45px;">
-            뉴만과 웰순의 일상생활에 손동작으로 도움을 주세요<br>
-            <br>Mindful hand exercises to help<br>Neuman and Welson with everyday tasks</h3>
+          <h3 style="margin-top:45px;color:black;">
+            일상을 돕기위한 친절한 손동작<br>
+            Mindful hand exercises to help<br>with everyday tasks</h3>
         </div>
+        <h1 style="left:50px;bottom:100px;text-align:left;color:white;">Hello.<br>Meet NeuToy.</h1>
         <video id="intro_vid" src="intro_vid/intro_vid_comp.mov" class="preview" autoplay muted></video>
-        <div class="button_container">
+        <!--<div class="button_container">
           <a class="button" id="aboutButt" href="#about">About</a>
           <a class="button" id="demoButt" href="#demo">Demo</a>
           <a class="button" id="stretchButt" href="#stretch">Stretch</a>
+        </div>-->
+        <div style="position:absolute;right:50px;bottom:22%;width:25%;">
+          <img src="img/Just Welson-01.svg">
         </div>
       </div>
     </section>
-    <section id="about">
-      <div class="sectionView" style="background-image: url(img/bg_2.svg);">
-        <h1 style="top:50px;"> What is NeuToy?</h1>
-        <div class="hozWrapper">
-          <div class="vertWrapper" style="max-width:50%;margin-left:50px;">
+    <section id="home">
+      <div class="sectionView" style="height:300vh;background-image: url(img/bg_2.svg);">
+        <div style="position:absolute;width:23%;top:100px; left:5px;">
+          <img src="img/Just Neuman-01.svg">
+        </div>
+        <div class="hozWrapper"style="position:absolute;top:100px;width:75%;right:5px">
+          <div class="vertWrapper" style="max-width:50%;">
             <p style="color:black;">숨 쉬기도 바쁜 현대인을 위해 '뉴토이'가 태어났습니다.
               뉴토이는 웹캠을 통해 사용자의 동작을 인식하고 개선점을 찾아 냅니다.
               인터렉션 게임 스토리에 따라 특정 동작들을 반복, 완수 하면 저절로(사용자도 모르는 사이에) 스트레칭을 하게 됩니다.
@@ -331,83 +397,101 @@
             but alleviates stress for your wellbeing.</p>
           </div>
           <div class="imgContainer">
-            <img src="img/Waving-at-Computer.gif">
+            <img class="keepRatio" src="img/Waving-at-Computer.gif">
           </div>
+        </div>
+        <div style="position:absolute;bottom:0;right:-30px;width:40%">
+          <img src="img/Lady at Desk-01.svg">
         </div>
       </div>
     </section>
     <section id="demo">
       <div class="sectionView" style="background-image: url(img/bg_3.svg);">
-        <h1 style="color:white;top:50px;">Tech demo</h1>
-        <div id="overlay"><h1 id="wavePrompt">Wave</h1></div>
-        <button id="beginDemo" onclick="begindemo()">start demo</button>
-        <div class="hozWrapper" style="width:75%;">
+        <h1 style="color:white;top:50px;">Click 'start' to try our tech</h1>
+        <div id="overlay">
+          <div id="overlayCont" class="imgContainer">
+            <h1 id="wavePrompt">Wave</h1>
+            <img class="keepRatio"src="img/Waving-at-Computer.gif">
+          </div>
+        </div>
+        <!--<button id="beginDemo" onclick="begindemo()">Start</button>-->
+        <div class="imgContainer" style="width:200px;position:absolute;top:220px;z-index:1;">
+          <img id="startButton" src="img/buttons/Start.svg" style="transition: all 0.5s;" onclick="begindemo()">
+        </div>
+        <div class="hozWrapper" style="width:75%;position:absolute;top:130px;">
           <div class="vertWrapper" style="align-items: center;">
-            <video id="demo_video" width="384" height="288"></video>
-            <p class="text-center" id ="webcam" style="color:black;">Webcam View</p>
+            <video id="demo_video" width="384" height="288" style="border-radius:20px;z-index:1;"></video>
+            <div id="videoPlaceholder"></div>
+            <p class="text-center" id ="webcam" style="color:white;">Webcam View</p>
           </div>
           <div class="vertWrapper" style="align-items: center;">
             <div id="jumbo"></div>
-            <p class="text-center" id ="handcam" style="color:black;">Single Hand Tracking</p>
+            <p class="text-center" id ="handcam" style="color:white;">Single Hand Tracking</p>
           </div>
         </div>
 
-        <div class="row d-flex justify-content-center">
+        <!--<div class="row d-flex justify-content-center">
             <div class="d-flex justify-content-center">
                 <div class="text-center" id="logotext" style="color:grey;">Powered by</div>
                 <div id="logoContainer" width="200px">
-                  <img class="mx-auto d-block" id="logo" src="img/NeuToy Logo Whale.png"><!-- width="10%" height="10%">-->
+                  <img class="mx-auto d-block" id="logo" src="img/NeuToy Logo Whale.png">
                 </div>
 
             </div>
-        </div>
+        </div>-->
     </section>
-    <section id="stretch">
-      <div class="sectionView" style="background-color: white;">
-      <div class="hozWrapper" style="flex-flow:column wrap; height:100%; margin-top:0px;">
+    <section id="play">
+      <div class="sectionView" style="background-color:white;">
+      <!--<button id="beginStory">PLAY</button>-->
+      <h1 style="position:relative;margin-top:50px;margin-bottom:50px">Be better.</h1>
+      <div class="imgContainer" style="width:200px;z-index:1;">
+        <img id="playButton" src="img/buttons/Play.svg" style="transition: all 0.5s;">
+      </div>
+      <div class="hozWrapper" style="flex-flow:wrap; height:100%; margin-top:80px;">
           <div class="stretchstep" id="stretch1">
+            <!--<div class="numContainer"> <h2 class="num">1</h2> </div>-->
             <img src="img/Woman at desk.svg">
             <h3>Complete hand exercises from your home or office</h3>
           </div>
           <div class="stretchstep" id="stretch2">
-            <h3>Use our tech to ensure you stretch your hands effectively</h3>
+            <!--<div class="numContainer"><h2 class="num">2</h2></div>-->
             <img src="img/Hand Instruction-01.svg">
+            <h3>Use our tech to ensure you stretch your hands effectively</h3>
           </div>
           <div id="stretch3" class="stretchstep" >
-
-            <img src="img/Neuman and Welson-01.svg">
+            <!--<div class="numContainer"><h2 class="num">3</h2></div>-->
+            <img src="img/Paper Light Puddle.svg">
             <h3>Help Neuman and Welson complete tasks around their home</h3>
             <!--<h1 style="top:80px;color:#77AFF7;">NeuToy</h1>
             <h3 style="margin-top: 120px;">
               뉴먼과 웰선의 일상생활에 손동작으로 도움을 주세요<br>
               <br>Mindful hand exercises to help Neuman<br>and Welson with everyday tasks</h3>-->
           </div>
-          <div id="stretch4" class="stretchstep">
-            <button id="beginStory">PLAY</button>
-          </div>
-
       </div>
       </div>
     </section>
-    <section id="contact">
-      <div class="sectionView" style="background-image: url(img/bg_end.svg);background-size: 100% 80%;background-position: center bottom;;">
-        <div class="vertWrapper" style="width:40%;position:absolute;left:0;top:70px;height:85%;">
-          <a class="sns_icon_container" style="background-color:red;" href="https://www.youtube.com/channel/UCOpV5-2OuicC9NS8bSU6f4w/featured">
-            <img src="sns_icon/youtube.svg" style="padding:15px;">
-          </a>
-          <a class="sns_icon_container" style="background-color:#FEEA12;" href="https://pf.kakao.com/_iFxolK">
-            <img src="sns_icon/kakaotalk.svg" style="padding:15px;">
-          </a>
-          <a class="sns_icon_container" style="background-color:#495896;" href="https://www.facebook.com/NeuToyInc-110833360746823">
-            <img src="sns_icon/facebook-white.svg" style="padding:15px;">
-          </a>
-          <a class="sns_icon_container" style="background-color:white;" href="https://www.instagram.com/neutoy.inc/?hl=en">
-            <img src="sns_icon/instagram.svg" style="padding:15px;">
-          </a>
+    <section id="about">
+      <div class="sectionView" style="height:200vh;background-image: url(img/bg_end.svg);background-size: 100% 80%;background-position: center bottom;">
+        <div class="contact">
+          <div class="vertWrapper" style="width:40%;position:absolute;left:0;height:90%;">
+            <a class="sns_icon_container" style="background-color:red;" href="https://www.youtube.com/channel/UCOpV5-2OuicC9NS8bSU6f4w/featured">
+              <img src="sns_icon/youtube.svg" style="padding:15px;">
+            </a>
+            <a class="sns_icon_container" style="background-color:#FEEA12;" href="https://pf.kakao.com/_iFxolK">
+              <img src="sns_icon/kakaotalk.svg" style="padding:15px;">
+            </a>
+            <a class="sns_icon_container" style="background-color:#495896;" href="https://www.facebook.com/NeuToyInc-110833360746823">
+              <img src="sns_icon/facebook-white.svg" style="padding:15px;">
+            </a>
+            <a class="sns_icon_container" style="background-color:white;" href="https://www.instagram.com/neutoy.inc/?hl=en">
+              <img src="sns_icon/instagram.svg" style="padding:15px;">
+            </a>
+          </div>
+          <div class="formContainer">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSevkScbZjI-ckNpP3EezzzJg6E_gq8F9ibsexpZisSwZjQ4fQ/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+          </div>
         </div>
-        <div class="formContainer">
-          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSevkScbZjI-ckNpP3EezzzJg6E_gq8F9ibsexpZisSwZjQ4fQ/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-        </div>
+
       </div>
     </section>
   </div>
@@ -478,12 +562,14 @@
   })*/
 
   var buffer = 150; // pixels from bottom at which active tab switches
+  var animDone = false;
+
   function onScroll(event){
     var scrollPos = $(document).scrollTop();
     $('#topnav .link').each(function () {
         var currLink = $(this);
         var refElement = $(currLink.attr("href"));
-        if (refElement.position().top <= scrollPos +buffer && refElement.position().top + refElement.height()> scrollPos+buffer) {
+        if (refElement.position().top <= scrollPos +(window.innerHeight/2) && refElement.position().top + refElement.height()> scrollPos+(window.innerHeight/2)) {
             $('#topnav .link').removeClass("link_active");
             currLink.addClass("link_active");
         }
@@ -491,15 +577,40 @@
             currLink.removeClass("link_active");
         }
     });
+    if ($('#play').position().top <= scrollPos+$('#play').height() && animDone == false) {
+      //slideIn();
+      animDone = true;
+    }
   }
 
   window.onload = () => {
     window.location.href = '#intro';
+    document.getElementById('defaultCanvas0').style.borderRadius = '20px';
+
   }
   $(document).ready(function () {
     $('.content').on("scroll", onScroll);
   });
 
+  function slideIn() {
+    var tl = anime.timeline({
+      easing: 'easeOutSine',
+      duration: 1100,
+    })
+    tl
+    .add({
+      targets:'#stretch1',
+      translateX: [-window.innerWidth/2,0],
+    })
+    .add({
+      targets:'#stretch2',
+      translateX: [-window.innerWidth/2,0],
+    },'-=300')
+    .add({
+      targets:'#stretch3',
+      translateX: [window.innerWidth/2,0],
+    },'-=300')
+  }
 
   var intro_vid = document.getElementById('intro_vid')
   intro_vid.onended = function() {

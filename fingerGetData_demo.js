@@ -13,10 +13,10 @@ let trainingData = []
 let start_draw = false;
 
 function begindemo() {
-  document.getElementById('overlay').style.opacity = 0.8;
   document.getElementById('overlay').style.zIndex = 100;
+  $('#overlay').fadeIn(1000);
   console.log('begindemo clicked');
-  document.getElementById('beginDemo').style.visibility = 'hidden';
+  document.getElementById('startButton').style.visibility = 'hidden';
   // detect device camera
   const userMedia = navigator.mediaDevices.getUserMedia({
       audio: false,
@@ -41,10 +41,10 @@ function begindemo() {
   }).catch(function (error) {
       console.error(error.message);
   });
-
+  
   var prompt = setInterval(function() {
     if (start_draw == true) {
-      document.getElementById('overlay').style.opacity = 0;
+      $('#overlay').fadeOut(1000);
       document.getElementById('overlay').style.zIndex = 0;
       clearInterval(prompt);
     }
